@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VSmauiApp.Pages.LoginPage"
+             xmlns:vm="clr-namespace:VSmauiApp.ViewModels"
+             Padding="50,20"
+             Title="Login">
+    
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid>
+        <Grid RowDefinitions="150,*,*">
+            <Image Source="logo.png" />
+
+            <VerticalStackLayout Grid.Row="1" 
+                                 Spacing="40"
+                                 VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Tên đăng nhập" />
+                    <Entry Text="{Binding UserName, Mode=TwoWay}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Mật khẩu" />
+                    <Entry IsPassword="True" Text="{Binding Password,Mode=TwoWay}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <Button Text="Đăng nhập" 
+                    Grid.Row="2"
+                    x:Name="btnSubmit"
+                    VerticalOptions="Center" />
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="Center"
+             BindingContext="{Binding Path=Filter}"
+             Mode="{Binding Path=Mode}"
+             xmlns:controls="clr-namespace:VSmauiApp.Controls"
+             x:Class="VSmauiApp.Views.FilterSelector">
+    <ContentView.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="10,8" />
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Format" Value="dd/MM/yyyy" />
+        </Style>
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="20">
+        <Grid ColumnDefinitions="Auto,Auto,Auto">
+            <Label Text="Theo giờ" Grid.Column="0" />
+            <Label Text="Theo ngày" Grid.Column="1" />
+            <Label Text="Theo tháng" Grid.Column="2" />
+
+            <BoxView x:Name="activeIndicator"
+                 Grid.Column="0"
+                 HeightRequest="4" 
+                 VerticalOptions="End"
+                 BackgroundColor="{StaticResource Primary}" />
+        </Grid>
+
+        <Grid ColumnDefinitions="Auto, 40, Auto, Auto" ColumnSpacing="8"
+              HorizontalOptions="Center">
+            <BoxView HeightRequest="2" 
+                     WidthRequest="10"
+                     VerticalOptions="Center" 
+                     HorizontalOptions="Center"
+                     Grid.Column="1" Color="{StaticResource Primary}" />
+            
+            <DatePicker Grid.Column="0" Date="{Binding Path=Start}" DateSelected="StartDatePicker_DateSelected" />
+            <DatePicker Grid.Column="2" Date="{Binding Path=End}" DateSelected="EndDatePicker_DateSelected" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>

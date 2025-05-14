@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="VSmauiApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:VSmauiApp"
+    xmlns:pages="clr-namespace:VSmauiApp.Pages"
+    xmlns:views="clr-namespace:VSmauiApp.Views"
+    xmlns:vm="clr-namespace:VSmauiApp.ViewModels"
+    xmlns:controls="clr-namespace:VSmauiApp.Controls"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarIsVisible="False"
+    Title="VSmauiApp">
+
+    <Shell.FlyoutHeader>
+        <views:AksHeader />
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="Danh sách các trạm" Icon="home.png">
+        <ShellContent Route="home" ContentTemplate="{DataTemplate pages:MainPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Trạm mặc định" Icon="station.png">
+        <ShellContent Route="station-now" ContentTemplate="{DataTemplate pages:StationDetailPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Lịch sử" Icon="log.png" 
+                      Route="history"
+                      ContentTemplate="{DataTemplate pages:MainPage}" />
+        <ShellContent Title="Cài đặt" Icon="setting.png" 
+                      Route="setting"
+                      ContentTemplate="{DataTemplate pages:MainPage}" />
+    </FlyoutItem>
+    <FlyoutItem>
+        <ShellContent Title="Đăng xuất" Icon="logout.png" 
+                      Route="logout" ContentTemplate="{DataTemplate pages:LoginPage}" />
+    </FlyoutItem>
+</Shell>
