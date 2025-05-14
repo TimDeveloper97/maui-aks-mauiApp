@@ -123,6 +123,9 @@ namespace VSmauiApp.ViewModels
 
 namespace VSmauiApp.ViewModels
 {
+    using LiveChartsCore;
+    using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+    using LiveChartsCore.SkiaSharpView;
     using Models;
     using VSmauiApp.Controls.Graphics;
 
@@ -158,19 +161,30 @@ namespace VSmauiApp.ViewModels
     public abstract class StationChartViewModel : StationDetailViewModel
     {
         public ChartInfo Chart { get; set; } = new ChartInfo();
+        public ISeries[] Series { get; set; }
     }
     public class StationRealTimeViewModel : StationChartViewModel
     {
         public StationRealTimeViewModel()
         {
             Title = "Trạng thái tức thời";
-            Chart = new ChartInfo {
+            Chart = new ChartInfo
+            {
                 Title = "Công suất tiêu thụ",
                 Ox = new MinuteAxisInfo(),
                 Oy = new PowerAxisInfo().Demo(60),
             };
 
-
+            Series = [
+                new LineSeries<double>
+                {
+                    Values = [2, 1, 3, 5, 3, 4, 6],
+                    Fill = null,
+                    GeometrySize = 20,
+                    DataLabelsSize = 20,
+                    DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
+                },
+            ];
         }
     }
     public class StationStatusViewModel : StationChartViewModel
@@ -185,6 +199,19 @@ namespace VSmauiApp.ViewModels
                 Ox = new HourAxisInfo(),
                 Oy = new PowerAxisInfo().Demo(n),
             };
+
+            Series = [
+                new ColumnSeries<double>
+                {
+                    Values = [ 20, 50, 40, 20, 40, 30, 50, 20, 50, 40 ],
+
+                    // Defines the distance between every bars in the series
+                    Padding = 0,
+
+                    // Defines the max width a bar can have
+                    MaxBarWidth = double.MaxValue
+                }
+            ];
         }
     }
     public class StationHistoryViewModel : StationDetailViewModel

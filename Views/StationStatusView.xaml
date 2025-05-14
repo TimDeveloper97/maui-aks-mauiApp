@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:VSmauiApp.Views"
              xmlns:controls="clr-namespace:VSmauiApp.Controls"
+              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
            x:Class="VSmauiApp.Views.StationStatusView">
     <Grid RowDefinitions="30, 30, Auto, *">
         <Label Text="{Binding Address}" 
@@ -10,13 +11,18 @@
                HorizontalOptions="Center"
                VerticalOptions="Center" />
 
-        <views:StationChart x:Name="chart" 
+        <!--<views:StationChart x:Name="chart" 
                             Margin="10" 
                             Grid.Row="2"
                             BindingContext="{Binding Path=Chart}">
             <views:StationChart.Plots>
                 <views:SummaryChart />
             </views:StationChart.Plots>
-        </views:StationChart>
+        </views:StationChart>-->
+
+        <Grid Grid.Row="2" HeightRequest="400">
+            <lvc:CartesianChart Series="{Binding Series}">
+            </lvc:CartesianChart>
+        </Grid>
     </Grid>
 </ContentView>
